@@ -1,38 +1,39 @@
-def filter_by_state(data, state='EXECUTED'):
+from typing import List, Dict, Any
+
+
+def filter_by_state(
+    data: List[Dict[str, Any]], state: str = "EXECUTED"
+) -> List[Dict[str, Any]]:
     """
     Фильтрует список словарей по значению ключа 'state'.
 
     Параметры:
-    data (list): Список словарей с данными
-    state (str): Значение для фильтрации (по умолчанию 'EXECUTED')
+    data: Список словарей с данными
+    state: Значение для фильтрации (по умолчанию 'EXECUTED')
 
     Возвращает:
-    list: Новый список с отфильтрованными словарями
+    Новый список с отфильтрованными словарями
     """
     result = []
     for item in data:
-        if item['state'] == state:
+        if item["state"] == state:
             result.append(item)
     return result
 
 
-def sort_by_date(data, reverse=True):
+def sort_by_date(
+    data: List[Dict[str, Any]], reverse: bool = True
+) -> List[Dict[str, Any]]:
     """
     Сортирует список словарей по дате.
 
     Параметры:
-    data (list): Список словарей с данными
-    reverse (bool):
-        - True (по умолчанию) - сортировка по убыванию (сначала новые)
-        - False - сортировка по возрастанию (сначала старые)
+    data: Список словарей с данными
+    reverse: Порядок сортировки (True - новые сначала, False - старые сначала)
 
     Возвращает:
-    list: Новый отсортированный список
+    Новый отсортированный список
     """
-    # Копируем список, чтобы не изменять исходный
     sorted_data = data.copy()
-
-    # Сортируем по ключу 'date'
-    sorted_data.sort(key=lambda x: x['date'], reverse=reverse)
-
+    sorted_data.sort(key=lambda x: x["date"], reverse=reverse)
     return sorted_data
